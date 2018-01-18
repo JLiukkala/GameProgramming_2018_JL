@@ -176,8 +176,8 @@ MonoBehaviour:
     y: 0
     width: 337
     height: 430
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -256,8 +256,8 @@ MonoBehaviour:
     y: 0
     width: 454
     height: 731
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -370,7 +370,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: e4fbffff00000000
+    m_ExpandedIDs: e4fbffff000000005c250000782500007c250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -601,19 +601,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Code
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 81
   m_LastFolders:
-  - Assets/Code
+  - Assets/Prefabs
   m_LastFoldersGridSize: 81
   m_LastProjectPath: C:\Users\jaakk\Documents\GameProgramming_2018_JL\GameProgramming_2018_JL
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 02250000
-    m_LastClickedID: 9474
-    m_ExpandedIDs: 00000000ba24000002250000ffffff7f
+    m_SelectedIDs: 1c250000
+    m_LastClickedID: 9500
+    m_ExpandedIDs: 00000000c024000008250000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -641,7 +641,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ba24000002250000
+    m_ExpandedIDs: 00000000c024000008250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: e8250000322a0000ec24000044270000a02500003a250000442a00000c260000342a0000c22400002825000000000000e02a000004350000182e0000782b0000a229000002250000702c00006c2d0000f62a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
