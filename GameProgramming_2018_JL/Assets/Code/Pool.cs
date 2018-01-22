@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace TankGame
 {
     public class Pool<T>
         where T : Component
     {
+        // The initial size of the pool.
         private int _poolSize;
+
+        // The prefab from which all objects in the pool are instantiated.
         private T _objectPrefab;
+
+        // When the pool runs out of objects, should the pool grow or just return null.
         private bool _shouldGrow;
+
+        // The list containing all of the objects in this pool. 
         private List<T> _pool;
+
+        private Action<T> _initMethod;
 
         public Pool(int poolSize, bool shouldGrow, T prefab)
         {
@@ -26,9 +36,19 @@ namespace TankGame
             }
         }
 
+        public Pool(int poolSize, bool shouldGrow, T prefab, Action<T> initMethod)
+            : this(poolSize, shouldGrow, prefab)
+        {
+            _initMethod = initMethod;
+            foreach (var item in _pool)
+            {
+                _initMethod(item);
+            }
+        }
+
         private T AddObject(bool isActive = false)
         {
-            T component = Object.Instantiate(_objectPrefab);
+            T component = UnityEngine.Object.Instantiate(_objectPrefab);
 
             if (isActive)
             {

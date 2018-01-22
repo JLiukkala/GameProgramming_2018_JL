@@ -85,6 +85,8 @@
     <Compile Include="Assets\Code\PlayerUnit.cs" />
     <Compile Include="Assets\Code\Pool.cs" />
     <Compile Include="Assets\Code\Projectile.cs" />
+    <Compile Include="Assets\Code\Tests\GetComponentInHierarchyTester.cs" />
+    <Compile Include="Assets\Code\Tests\TestComponent.cs" />
     <Compile Include="Assets\Code\TransformMover.cs" />
     <Compile Include="Assets\Code\Unit.cs" />
     <Compile Include="Assets\Code\Weapon.cs" />
