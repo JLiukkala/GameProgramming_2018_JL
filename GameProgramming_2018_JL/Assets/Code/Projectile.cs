@@ -18,8 +18,8 @@ namespace TankGame
         [SerializeField]
         private float _explosionRadius;
 
-        private Weapon _weapon;
         private Rigidbody _rigidbody;
+        private System.Action<Projectile> _collisionCallback;
 
         // Self-initializing property.
         public Rigidbody Rigidbody
@@ -35,9 +35,9 @@ namespace TankGame
             }
         }
 
-        public void Init(Weapon weapon)
+        public void Init(System.Action<Projectile> collisionCallback)
         {
-            _weapon = weapon;
+            _collisionCallback = collisionCallback;
         }
 
         public void Launch(Vector3 direction)
@@ -51,7 +51,7 @@ namespace TankGame
             // TODO: Add particle effects.
             // TODO: Apply damage to enemies.
             Rigidbody.velocity = Vector3.zero;
-            _weapon.ProjectileHit(this);
+            _collisionCallback(this);
         }
     }
 }

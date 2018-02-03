@@ -36,6 +36,17 @@ namespace TankGame
             //return gameObject.GetComponentInInactiveParentsIterative<TComponent>();
         }
 
+        public static bool AddUnique<T>(this IList<T> list, T item)
+        {
+            if (list.Contains(item))
+            {
+                return false;
+            }
+
+            list.Add(item);
+            return true;
+        }
+
         private static TComponent GetComponentInInactiveParentsIterative<TComponent>
             (this GameObject gameObject)
             where TComponent : Component

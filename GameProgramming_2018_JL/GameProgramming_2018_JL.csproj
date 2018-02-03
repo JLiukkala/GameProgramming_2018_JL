@@ -80,8 +80,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Code\AI\AIStateBase.cs" />
+    <Compile Include="Assets\Code\AI\PatrolState.cs" />
+    <Compile Include="Assets\Code\EnemyUnit.cs" />
     <Compile Include="Assets\Code\ExtensionMethods.cs" />
     <Compile Include="Assets\Code\Interfaces\IMover.cs" />
+    <Compile Include="Assets\Code\PathSystem\IPathUser.cs" />
+    <Compile Include="Assets\Code\PathSystem\Path.cs" />
+    <Compile Include="Assets\Code\PathSystem\Waypoint.cs" />
     <Compile Include="Assets\Code\PlayerUnit.cs" />
     <Compile Include="Assets\Code\Pool.cs" />
     <Compile Include="Assets\Code\Projectile.cs" />
