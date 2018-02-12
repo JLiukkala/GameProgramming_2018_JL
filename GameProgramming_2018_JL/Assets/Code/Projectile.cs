@@ -7,7 +7,7 @@ namespace TankGame
     public class Projectile : MonoBehaviour
     {
         [SerializeField]
-        private float _damage;
+        private int _damage;
 
         [SerializeField]
         private float _shootingForce;
@@ -17,6 +17,12 @@ namespace TankGame
 
         [SerializeField]
         private float _explosionRadius;
+
+        [SerializeField, HideInInspector]
+        private int _hitMask;
+
+        //[SerializeField]
+        //private LayerMask layerMask;
 
         private Rigidbody _rigidbody;
         private System.Action<Projectile> _collisionCallback;
@@ -49,9 +55,27 @@ namespace TankGame
         protected void OnCollisionEnter(Collision collision)
         {
             // TODO: Add particle effects.
-            // TODO: Apply damage to enemies.
+            ApplyDamage();
             Rigidbody.velocity = Vector3.zero;
             _collisionCallback(this);
+        }
+
+        private void ApplyDamage()
+        {
+            List<IDamageReceiver> alreadyDamaged = new List<IDamageReceiver>();
+
+            Collider[] damageReceivers = Physics.OverlapSphere(transform.position, _explosionRadius, _hitMask);
+
+            for (int i = 0; i < damageReceivers.Length; i++)
+            {
+                IDamageReceiver damageReceiver = damageReceivers[i].GetComponentInParent<IDamageReceiver>();
+                if (damageReceiver != null && !alreadyDamaged.Contains(damageReceiver))
+                {
+                    damageReceiver.TakeDamage(_damage);
+                    alreadyDamaged.Add(damageReceiver);
+                    // TODO: Apply explosion force!
+                }
+            }
         }
     }
 }

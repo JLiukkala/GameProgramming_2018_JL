@@ -31,6 +31,18 @@ namespace TankGame
         public float ShootingDistance { get { return _shootingDistance; } }
         public PlayerUnit Target { get; set; }
 
+        public Vector3? ToTargetVector
+        {
+            get
+            {
+                if (Target != null)
+                {
+                    return Target.transform.position - transform.position;
+                }
+                return null;
+            }
+        }
+
         public AIStateBase CurrentState { get; private set; }
 
         public override void Init()
@@ -43,6 +55,10 @@ namespace TankGame
         {
             PatrolState patrol = new PatrolState(this, _path, _direction, _waypointArriveDistance);
             _states.Add(patrol);
+
+            FollowTargetState followTarget = new FollowTargetState(this);
+            _states.Add(followTarget);
+
             CurrentState = patrol;
             CurrentState.StateActivated();
         }

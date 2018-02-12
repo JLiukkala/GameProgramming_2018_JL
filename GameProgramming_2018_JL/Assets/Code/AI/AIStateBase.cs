@@ -25,6 +25,12 @@ namespace TankGame.AI
             TargetStates = new List<AIStateType>();
         }
 
+        protected AIStateBase(EnemyUnit owner, AIStateType state) : this()
+        {
+            Owner = owner;
+            State = state;
+        }
+
         public bool AddTransition(AIStateType targetState)
         {
             return TargetStates.AddUnique(targetState);

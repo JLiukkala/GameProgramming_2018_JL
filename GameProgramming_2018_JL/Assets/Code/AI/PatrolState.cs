@@ -36,7 +36,7 @@ namespace TankGame.AI
 
         public override void Update()
         {
-            // 1. Should we chaange the state?
+            // 1. Should we change the state?
             //    1.1 If yes, change the state and return.
 
             if (!ChangeState())
@@ -78,10 +78,19 @@ namespace TankGame.AI
             if (players.Length > 0)
             {
                 PlayerUnit player = players[0].gameObject.GetComponentInHierarchy<PlayerUnit>();
-                Owner.Target = player;
-                Owner.PerformTransition(AIStateType.FollowTarget);
 
-                return true;
+                if(player != null)
+                {
+                    Owner.Target = player;
+
+                    float sqrDistanceToPlayer = Owner.ToTargetVector.Value.sqrMagnitude;
+                    if (sqrDistanceToPlayer < Owner.DetectEnemyDistance * Owner.DetectEnemyDistance)
+                    {
+                        return Owner.PerformTransition(AIStateType.FollowTarget);
+                    }
+                }
+
+                Owner.Target = null;
             }
 
             return false;
