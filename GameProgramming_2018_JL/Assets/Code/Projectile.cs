@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace TankGame
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeField, Range(0, 100)]
         private int _damage;
 
         [SerializeField]

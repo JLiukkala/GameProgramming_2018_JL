@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -287,15 +285,26 @@
     <Compile Include="Assets\Code\AI\AIStateBase.cs" />
     <Compile Include="Assets\Code\AI\FollowTargetState.cs" />
     <Compile Include="Assets\Code\AI\PatrolState.cs" />
+    <Compile Include="Assets\Code\CameraFollow.cs" />
+    <Compile Include="Assets\Code\EnemyHealth.cs" />
     <Compile Include="Assets\Code\EnemyUnit.cs" />
+    <Compile Include="Assets\Code\EventTester.cs" />
     <Compile Include="Assets\Code\Examples\Flags.cs" />
     <Compile Include="Assets\Code\ExtensionMethods.cs" />
+    <Compile Include="Assets\Code\GameManager.cs" />
     <Compile Include="Assets\Code\Health.cs" />
+    <Compile Include="Assets\Code\Interfaces\ICameraFollow.cs" />
     <Compile Include="Assets\Code\Interfaces\IDamageReceiver.cs" />
     <Compile Include="Assets\Code\Interfaces\IMover.cs" />
+    <Compile Include="Assets\Code\Interfaces\IPersistence.cs" />
     <Compile Include="Assets\Code\PathSystem\IPathUser.cs" />
     <Compile Include="Assets\Code\PathSystem\Path.cs" />
     <Compile Include="Assets\Code\PathSystem\Waypoint.cs" />
+    <Compile Include="Assets\Code\Persistence\BinaryPersistence.cs" />
+    <Compile Include="Assets\Code\Persistence\GameData.cs" />
+    <Compile Include="Assets\Code\Persistence\SaveSystem.cs" />
+    <Compile Include="Assets\Code\Persistence\SerializableVector3.cs" />
+    <Compile Include="Assets\Code\Persistence\UnitData.cs" />
     <Compile Include="Assets\Code\PlayerUnit.cs" />
     <Compile Include="Assets\Code\Pool.cs" />
     <Compile Include="Assets\Code\Projectile.cs" />

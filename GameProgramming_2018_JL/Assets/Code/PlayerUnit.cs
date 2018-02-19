@@ -9,6 +9,7 @@ namespace TankGame
         [SerializeField]
         private string horizontalAxis = "Horizontal";
         [SerializeField]
+        [Tooltip("The name of the vertical axis")]
         private string verticalAxis = "Vertical";
 
         protected override void Update()
