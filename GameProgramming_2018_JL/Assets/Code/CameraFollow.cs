@@ -43,18 +43,21 @@ namespace TankGame
         // it is capable of tracking objects that have moved in the other Updates.
         void LateUpdate()
         {
-            // Sets the camera's position to a new variable.
+            // Sets the camera's position to a new variable 
+            // and then to the target transform's position.
             Vector3 cameraPosition = transform.position;
             cameraPosition = _targetTransform.position;
 
             // Performs the conversion from degrees to radians.
-            // I put it in a separate float variable since it
-            // didn't seem to work without doing that.
             float angle = _angle * Mathf.Deg2Rad;
 
             // Finds out the height from target by multiplying the distance
             // of the camera with the cosine of the angle of the camera.
             float heightFromTarget = Mathf.Cos(angle) * _distance;
+            
+            // Finds out the horizontal distance from target by 
+            // multiplying the distance of the camera with the 
+            // sine of the angle of the camera.
             float horizontalDistanceFromTarget = Mathf.Sin(angle) * _distance;
 
             // Creates a variable called direction that is the camera's 
