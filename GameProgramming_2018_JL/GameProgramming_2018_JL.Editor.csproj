@@ -293,6 +293,7 @@
     <Compile Include="Assets\Code\Editor\GetComponentInHierachyTest.cs" />
     <Compile Include="Assets\Code\Editor\GetOrAddComponentTest.cs" />
     <Compile Include="Assets\Code\Editor\Inspectors\ProjectileInspector.cs" />
+    <Compile Include="Assets\Code\Editor\Inspectors\UnitInspector.cs" />
     <Compile Include="Assets\Code\PathSystem\Editor\PathInspector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

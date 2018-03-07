@@ -303,6 +303,7 @@
     <Compile Include="Assets\Code\PathSystem\Waypoint.cs" />
     <Compile Include="Assets\Code\Persistence\BinaryPersistence.cs" />
     <Compile Include="Assets\Code\Persistence\GameData.cs" />
+    <Compile Include="Assets\Code\Persistence\JSONPersistence.cs" />
     <Compile Include="Assets\Code\Persistence\SaveSystem.cs" />
     <Compile Include="Assets\Code\Persistence\SerializableVector3.cs" />
     <Compile Include="Assets\Code\Persistence\UnitData.cs" />

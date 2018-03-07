@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using System.IO;
+using TankGame.Persistence;
+using System.Linq;
 
 namespace TankGame
 {
@@ -25,6 +27,12 @@ namespace TankGame
 
         private List<Unit> _enemyUnit = new List<Unit>();
         private Unit _playerUnit = null;
+        private SaveSystem _saveSystem;
+
+        public string SavePath
+        {
+            get { return Path.Combine(Application.persistentDataPath, "save"); }
+        }
 
         protected void Awake()
         {
@@ -47,6 +55,23 @@ namespace TankGame
             {
                 AddUnit(unit);
             }
+
+            _saveSystem = new SaveSystem(new JSONPersistence(SavePath));
+        }
+
+        protected void Update()
+        {
+            bool save = Input.GetKeyDown(KeyCode.F2);
+            bool load = Input.GetKeyDown(KeyCode.F3);
+
+            if (save)
+            {
+                Save();
+            }
+            else if (load)
+            {
+                Load();
+            }
         }
 
         public void AddUnit(Unit unit)
@@ -59,6 +84,33 @@ namespace TankGame
             {
                 _playerUnit = unit;
             }
+        }
+
+        public void Save()
+        {
+            GameData data = new GameData();
+            foreach (Unit unit in _enemyUnit)
+            {
+                data.EnemyDatas.Add(unit.GetUnitData());
+            }
+            data.PlayerData = _playerUnit.GetUnitData();
+
+            _saveSystem.Save(data);
+        }
+
+        public void Load()
+        {
+            GameData data = _saveSystem.Load();
+            foreach (UnitData enemyData in data.EnemyDatas)
+            {
+                Unit enemy = _enemyUnit.FirstOrDefault(unit => unit.Id == enemyData.Id);
+                if (enemy != null)
+                {
+                    enemy.SetUnitData(enemyData);
+                }
+            }
+
+            _playerUnit.SetUnitData(data.PlayerData);
         }
     }
 }
