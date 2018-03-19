@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -298,6 +300,13 @@
     <Compile Include="Assets\Code\Interfaces\IDamageReceiver.cs" />
     <Compile Include="Assets\Code\Interfaces\IMover.cs" />
     <Compile Include="Assets\Code\Interfaces\IPersistence.cs" />
+    <Compile Include="Assets\Code\MessageBus\IMessage.cs" />
+    <Compile Include="Assets\Code\MessageBus\IMessageBus.cs" />
+    <Compile Include="Assets\Code\MessageBus\ISubscription.cs" />
+    <Compile Include="Assets\Code\MessageBus\MessageBus.cs" />
+    <Compile Include="Assets\Code\MessageBus\Messages\UnitDiedMessage.cs" />
+    <Compile Include="Assets\Code\MessageBus\Messages\UnitGotHit.cs" />
+    <Compile Include="Assets\Code\MessageBus\Subscription.cs" />
     <Compile Include="Assets\Code\PathSystem\IPathUser.cs" />
     <Compile Include="Assets\Code\PathSystem\Path.cs" />
     <Compile Include="Assets\Code\PathSystem\Waypoint.cs" />
@@ -307,13 +316,19 @@
     <Compile Include="Assets\Code\Persistence\SaveSystem.cs" />
     <Compile Include="Assets\Code\Persistence\SerializableVector3.cs" />
     <Compile Include="Assets\Code\Persistence\UnitData.cs" />
+    <Compile Include="Assets\Code\Persistence\Vector3Surrogate.cs" />
     <Compile Include="Assets\Code\PlayerUnit.cs" />
     <Compile Include="Assets\Code\Pool.cs" />
     <Compile Include="Assets\Code\Projectile.cs" />
     <Compile Include="Assets\Code\Tests\GetComponentInHierarchyTester.cs" />
+    <Compile Include="Assets\Code\Tests\OperatorTesting.cs" />
     <Compile Include="Assets\Code\Tests\TestComponent.cs" />
     <Compile Include="Assets\Code\TransformMover.cs" />
+    <Compile Include="Assets\Code\UI\HealthUI.cs" />
+    <Compile Include="Assets\Code\UI\HealthUIItem.cs" />
+    <Compile Include="Assets\Code\UI\UI.cs" />
     <Compile Include="Assets\Code\Unit.cs" />
+    <Compile Include="Assets\Code\VectorExtensions.cs" />
     <Compile Include="Assets\Code\Weapon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

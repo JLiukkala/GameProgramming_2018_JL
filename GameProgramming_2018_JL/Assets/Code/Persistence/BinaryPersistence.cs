@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TankGame.Persistence
@@ -23,9 +24,21 @@ namespace TankGame.Persistence
 
         public void Save<T>(T data)
         {
+            if (File.Exists(FilePath))
+            {
+                File.Delete(FilePath);
+            }
+
             using (FileStream stream = File.OpenWrite(FilePath))
             {
                 BinaryFormatter bf = new BinaryFormatter();
+
+                var surrogateSelector = new SurrogateSelector();
+                Vector3Surrogate v3ss = new Vector3Surrogate();
+                surrogateSelector.AddSurrogate(typeof(Vector3),
+                    new StreamingContext(StreamingContextStates.All), v3ss);
+                bf.SurrogateSelector = surrogateSelector;
+
                 bf.Serialize(stream, data);
                 // Calling stream.Close() not necessary when using 'using'.
                 stream.Close();
@@ -44,7 +57,18 @@ namespace TankGame.Persistence
                 try
                 {
                     BinaryFormatter bf = new BinaryFormatter();
+
+                    var surrogateSelector = new SurrogateSelector();
+                    Vector3Surrogate v3ss = new Vector3Surrogate();
+                    surrogateSelector.AddSurrogate(typeof(Vector3),
+                        new StreamingContext(StreamingContextStates.All), v3ss);
+                    bf.SurrogateSelector = surrogateSelector;
+
                     data = (T)bf.Deserialize(stream);
+                }
+                catch (SerializationException e)
+                {
+                    Debug.LogError("Deserialization failed!");
                 }
                 catch (Exception e)
                 {

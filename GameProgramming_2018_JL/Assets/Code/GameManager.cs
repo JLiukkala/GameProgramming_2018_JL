@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using TankGame.Persistence;
 using System.Linq;
+using TankGame.Messaging;
 
 namespace TankGame
 {
@@ -15,7 +16,7 @@ namespace TankGame
         {
             get
             {
-                if (_instance == null)
+                if (_instance == null && !IsClosing)
                 {
                     GameObject gameManagerObject = 
                         new GameObject(typeof(GameManager).Name);
@@ -25,6 +26,8 @@ namespace TankGame
             }
         }
 
+        public static bool IsClosing { get; private set; }
+
         private List<Unit> _enemyUnit = new List<Unit>();
         private Unit _playerUnit = null;
         private SaveSystem _saveSystem;
@@ -33,6 +36,8 @@ namespace TankGame
         {
             get { return Path.Combine(Application.persistentDataPath, "save"); }
         }
+
+        public MessageBus MessageBus { get; private set; }
 
         protected void Awake()
         {
@@ -48,15 +53,27 @@ namespace TankGame
             Init();
         }
 
+        private void OnApplicationQuit()
+        {
+            IsClosing = true;
+        }
+
         private void Init()
         {
+            IsClosing = false;
+
+            MessageBus = new MessageBus();
+
+            var UI = FindObjectOfType<UI.UI>();
+            UI.Init();
+
             Unit[] allUnits = FindObjectsOfType<Unit>();
             foreach (Unit unit in allUnits)
             {
                 AddUnit(unit);
             }
 
-            _saveSystem = new SaveSystem(new JSONPersistence(SavePath));
+            _saveSystem = new SaveSystem(new BinaryPersistence(SavePath));
         }
 
         protected void Update()
@@ -76,6 +93,8 @@ namespace TankGame
 
         public void AddUnit(Unit unit)
         {
+            unit.Init();
+
             if (unit is EnemyUnit)
             {
                 _enemyUnit.Add(unit);
@@ -84,6 +103,8 @@ namespace TankGame
             {
                 _playerUnit = unit;
             }
+
+            UI.UI.Current.HealthUI.AddUnit(unit);
         }
 
         public void Save()

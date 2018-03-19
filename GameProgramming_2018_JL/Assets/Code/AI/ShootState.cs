@@ -8,23 +8,29 @@ namespace TankGame.AI
     // ShootState is derived from the AIStateBase class.
     public class ShootState : AIStateBase
     {
-        // The distance when the unit shooting at an enemy squared.
-        public float SqrShootingDistance
-        {
-            get { return Owner.ShootingDistance * Owner.ShootingDistance; }
-        }
-
-        // The distance when the unit starts following a target squared.
-        public float SqrDetectEnemyDistance
-        {
-            get { return Owner.DetectEnemyDistance * Owner.DetectEnemyDistance; }
-        }
-
         public ShootState(EnemyUnit owner) : base(owner, AIStateType.Shoot)
         {
             // Adding the possible states that can be transitioned to from this state.
             AddTransition(AIStateType.Patrol);
             AddTransition(AIStateType.FollowTarget);
+        }
+
+        public override void StateActivated()
+        {
+            base.StateActivated();
+            Owner.Target.Health.UnitDied += OnTargetDied;
+        }
+
+        private void OnTargetDied(Unit target)
+        {
+            Owner.PerformTransition(AIStateType.Patrol);
+            Owner.Target = null;
+        }
+
+        public override void StateDeactivating()
+        {
+            base.StateDeactivating();
+            Owner.Target.Health.UnitDied -= OnTargetDied;
         }
 
         // Implementing the required method from the AIStateBase class.
@@ -34,7 +40,6 @@ namespace TankGame.AI
             // keep following the target and shooting at it at the same time.
             if (!ChangeState())
             {
-                Owner.Mover.Move(Owner.transform.forward);
                 Owner.Mover.Turn(Owner.Target.transform.position);
                 Owner.Weapon.Shoot();
             }
@@ -42,29 +47,17 @@ namespace TankGame.AI
 
         private bool ChangeState()
         {
-            // Finding out the unit's distance to the player squared.
-            Vector3 toPlayerVector = Owner.transform.position - Owner.Target.transform.position;
-            float sqrDistanceToPlayer = toPlayerVector.sqrMagnitude;
+            bool result = false;
 
-            // If the distance to the player squared is larger than the 
-            // shooting distance squared, the unit will return to the 
-            // FollowTarget state.
-            if (sqrDistanceToPlayer > SqrShootingDistance)
+            float distanceToTarget = Vector3.Distance(Owner.Target.transform.position, Owner.transform.position);
+
+            if (distanceToTarget > Owner.ShootingDistance) 
             {
-                return Owner.PerformTransition(AIStateType.FollowTarget);
+                Owner.PerformTransition(AIStateType.FollowTarget);
+                result = true;
             }
 
-            // If the distance to the player squared is larger than 
-            // the distance to detect an enemy squared, the unit will
-            // change the state to the Patrol state.
-            if (sqrDistanceToPlayer > SqrDetectEnemyDistance)
-            {
-                Owner.Target = null;
-                return Owner.PerformTransition(AIStateType.Patrol);
-            }
-
-            // Otherwise the state will remain unchanged.
-            return false;
+            return result;
         }
     }
 }

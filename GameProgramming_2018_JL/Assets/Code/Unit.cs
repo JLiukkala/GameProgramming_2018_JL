@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TankGame.Persistence;
+using TankGame.Messaging;
 
 namespace TankGame
 {
@@ -34,7 +35,7 @@ namespace TankGame
 
         private IMover _mover;
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private int _id = -1;
 
         public Weapon Weapon
@@ -51,11 +52,6 @@ namespace TankGame
         {
             get { return _id; }
             private set { _id = value; }
-        }
-
-        protected void Awake()
-        {
-            Init();
         }
 
         protected void OnDestroy()
@@ -100,6 +96,7 @@ namespace TankGame
 
         protected virtual void HandleUnitDied(Unit unit)
         {
+            GameManager.Instance.MessageBus.Publish(new UnitDiedMessage(this));
             gameObject.SetActive(false);
         } 
 
