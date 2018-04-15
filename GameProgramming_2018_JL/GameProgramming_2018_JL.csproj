@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -326,10 +324,15 @@
     <Compile Include="Assets\Code\TransformMover.cs" />
     <Compile Include="Assets\Code\UI\HealthUI.cs" />
     <Compile Include="Assets\Code\UI\HealthUIItem.cs" />
+    <Compile Include="Assets\Code\UI\LocalizationUI.cs" />
+    <Compile Include="Assets\Code\UI\LocalizedLabel.cs" />
     <Compile Include="Assets\Code\UI\UI.cs" />
     <Compile Include="Assets\Code\Unit.cs" />
     <Compile Include="Assets\Code\VectorExtensions.cs" />
     <Compile Include="Assets\Code\Weapon.cs" />
+    <Compile Include="Assets\Localization\Language.cs" />
+    <Compile Include="Assets\Localization\Localization.cs" />
+    <Compile Include="Assets\Localization\LocalizationNotFoundException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -295,6 +295,7 @@
     <Compile Include="Assets\Code\Editor\Inspectors\ProjectileInspector.cs" />
     <Compile Include="Assets\Code\Editor\Inspectors\UnitInspector.cs" />
     <Compile Include="Assets\Code\PathSystem\Editor\PathInspector.cs" />
+    <Compile Include="Assets\Localization\Editor\LocalizationWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
