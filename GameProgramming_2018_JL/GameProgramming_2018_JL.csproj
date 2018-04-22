@@ -287,6 +287,8 @@
     <Compile Include="Assets\Code\AI\PatrolState.cs" />
     <Compile Include="Assets\Code\AI\ShootState.cs" />
     <Compile Include="Assets\Code\CameraFollow.cs" />
+    <Compile Include="Assets\Code\Collectable.cs" />
+    <Compile Include="Assets\Code\CollectableSpawner.cs" />
     <Compile Include="Assets\Code\EnemyHealth.cs" />
     <Compile Include="Assets\Code\EnemyUnit.cs" />
     <Compile Include="Assets\Code\EventTester.cs" />
